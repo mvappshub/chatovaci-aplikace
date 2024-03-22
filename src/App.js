@@ -2,7 +2,7 @@ import React, { useRef, useState } from 'react';
 import Groq from 'groq-sdk';
 import './App.css';
 import typingSound from './assets/audio/typing.mp3';
-import logo from './assets/images/logo.png';
+import logo from './assets/images/logo.webp';
 
 
 const groq = new Groq({
