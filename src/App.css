@@ -1,38 +1,211 @@
-.App {
-  text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+body {
+  background-color: #181818;
+  color: #eeeeee;
+  font-family: 'IBM VGA8', monospace, sans-serif;
+  margin: 0;
+  padding: 0;
   display: flex;
   flex-direction: column;
   align-items: center;
+  text-align: center;
+  line-height: 1.2;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.1;
+}
+
+a, a:hover, a:active, a:visited {
+  text-decoration: none;
+  color: #1a1;
+}
+
+.header {
+  display: flex;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  align-items: center;
+  background-color: #222222;
+  padding: 10px;
+  width: 100%;
+  max-width: 768px;
 }
 
-.App-link {
-  color: #61dafb;
+.header-right {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-shadow: 5px 5px #555;
+  padding: 20px;
+  text-align: center;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+.header-right h1 {
+  margin: 0;
+  padding-right: 0;
+  font-family: "pxplus_ibm_vga8regular";
+  animation: fade_in 750ms;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  line-height: 1.1;
+  margin: 0;
+  padding: 15px 15px 30px 15px;
+}
+
+.header-right ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+}
+
+.header-right li.menuitem {
+  position: relative;
+  display: inline;
+  text-shadow: 4px 4px #444;
+  margin: 0 16px 0 16px;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .header-right, .header-right > ul {
+    float: none;
+    margin: 20px 0;
+    padding: 0;
   }
-  to {
-    transform: rotate(360deg);
-  }
+}
+
+.content {
+  max-width: 768px;
+  width: 100%;
+  padding: 20px;
+}
+
+.footer {
+  background-color: #222222;
+  padding: 10px;
+  text-align: center;
+  font-size: 0.8em;
+  width: 100%;
+  max-width: 768px;
+}
+
+.footer a {
+  color: #eeeeee;
+  text-decoration: none;
+}
+
+.terminal {
+  background-color: #000000;
+  color: #66ff66;
+  font-family: 'VT323', monospace;
+  padding: 20px;
+  border: 3px solid #66ff66;
+  margin: 20px 0;
+  box-shadow: 0 0 10px #66ff66;
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  position: relative;
+  overflow: hidden;
+}
+
+.terminal::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(rgba(18, 16, 16, 0) 50%, rgba(0, 0, 0, 0.25) 50%), linear-gradient(90deg, rgba(255, 0, 0, 0.06), rgba(0, 255, 0, 0.02), rgba(0, 0, 255, 0.06));
+  background-size: 100% 2px, 3px 100%;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.terminal-inner {
+  background-color: #000000;
+  color: #66ff66;
+  padding: 20px;
+  width: calc(100% - 40px);
+  height: 300px;
+  overflow-y: auto;
+  text-align: left;
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  font-family: 'VT323', monospace;
+  position: relative;
+  z-index: 1;
+}
+
+.terminal-output {
+  display: inline;
+}
+
+.terminal-input {
+  display: inline;
+}
+
+.terminal-input-field {
+  background-color: transparent;
+  color: #66ff66;
+  border: none;
+  padding: 0;
+  font-family: 'VT323', monospace;
+  animation: blinker 1s step-end infinite;
+  outline: none;
+  width: 100%;
+}
+
+@keyframes blinker {
+  50% { opacity: 0; }
+}
+
+
+
+/* Přidat animaci pro kurzor */
+.terminal-input-field:focus {
+  outline: none;
+  animation: blinker 1s step-end infinite;
+}
+
+@keyframes blinker {
+  50% { border-color: #000000; }
+}
+
+/* Přidat animační efekty pro výstup terminálu */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+.terminal-output {
+  animation: fadeIn 1s ease-in-out;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+.message {
+  margin-bottom: 10px;
+}
+
+.message.user {
+  color: #ff6666;
+}
+
+.message.assistant {
+  color: #66ff66;
+}
+
+.message .role {
+  font-weight: bold;
+}
+
+.message .content {
+  margin-left: 5px;
 }
